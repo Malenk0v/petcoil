@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can put global styles here. For example a light grey background and
+   sensible default text colour. Tailwind's utility classes can also be
+   composed in CSS via @apply. */
+html,
+body {
+  @apply bg-gray-50 text-gray-900 antialiased;
+}
