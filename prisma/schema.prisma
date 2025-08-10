@@ -1,0 +1,37 @@
+// This Prisma schema defines a simple model to represent places relevant to pets
+// in Israel. In a production system you would likely normalise some of the
+// fields (for example extracting a separate Services or Languages table), but
+// keeping everything inline simplifies the MVP.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // Use PostgreSQL by default; override with the DATABASE_URL environment
+  // variable when deploying. During development you can point this at a
+  // Supabase, Neon or local Postgres instance.
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Place {
+  id          String    @id @default(uuid())
+  type        String    // e.g. vet_clinic, groomer, pet_store
+  name        String
+  description String?
+  city        String
+  address     String
+  lat         Float
+  lng         Float
+  services    String[]  // list of supported services
+  petTypes    String[]  // dog, cat, other
+  amenities   String[]  // parking, accessible, etc.
+  priceBand   Int       // 1–3 indicating relative cost
+  languages   String[]  // languages spoken by the staff
+  phones      String[]
+  website     String?
+  whatsapp    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
